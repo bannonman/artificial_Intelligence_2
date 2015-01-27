@@ -1,3 +1,6 @@
+__author__ = 'coreyandrewbannon'
+
+
 def genResults():
     import math
     from statistics import mode
@@ -17,12 +20,12 @@ def genResults():
             20:'compression-ratio',21:'horsepower',22:'peak-rpm',23:'city-mpg',24:'highway-mpg',25:'price'};
 
 
-    fileName = input('Enter name of text file: ')+'.txt' 
-    newFile = open("c:/AI2Labs/reports/"+fileName, 'w')
+    fileName = input('Enter name of text file: ')+'.txt'
+    newFile = open("reports/"+fileName, 'w')
     newFile.close()
 
 
-    with open("C:\AI2Labs\data\DataSet.txt") as f:
+    with open("data/DataSet.txt") as f:
         for line in f:
             car = list()
             information = line.strip().split(',')
@@ -31,22 +34,22 @@ def genResults():
             list1.append(car)
 
     def categorical(i):
-        total = 0 
-        mean = 0 
+        total = 0
+        mean = 0
         count = 0
         count1 = 0
         notin = 0
         miss = 0
         card = 0
         modecount = 0
-        
+
         for list2 in list1:
             if(list2[i]!='?'):
                 cardList.append(list2[i])
                 count = count + 1
                 count1 = count - notin
             else:
-                notin = notin + 1 
+                notin = notin + 1
                 count = count + 1
 
         ca = set(cardList)
@@ -64,36 +67,36 @@ def genResults():
         secmodeper = (secmodecount / count1)*100
 
         # Open a file
-        fo = open("C:/AI2Labs/reports/"+fileName, "a")
+        fo = open("reports/"+fileName, "a")
         fo.write(dict[i]);
         fo.write("|");
         fo.write(str(count1));
         fo.write("|");
-        fo.write(str(miss));
+        fo.write(str(round(miss,2)));
         fo.write("|");
-        fo.write(str(card));
+        fo.write(str(round(card,2)));
         fo.write("|");
         fo.write(str(modes));
         fo.write("|");
-        fo.write(str(modecount));
+        fo.write(str(round(modecount,2)));
         fo.write("|");
-        fo.write(str(modeper));
+        fo.write(str(round(modeper,2)));
         fo.write("|");
         fo.write(str(secondmode));
         fo.write("|");
-        fo.write(str(secmodecount));
+        fo.write(str(round(secmodecount,2)));
         fo.write("|");
-        fo.write(str(secmodeper));
+        fo.write(str(round(secmodeper,2)));
         fo.write("|");
         fo.write("\n");
 
         # Close opend file
         fo.close()
 
-        
+
     def continuous(i):
-        total = 0 
-        mean = 0 
+        total = 0
+        mean = 0
         count = 0
         count1 = 0
         notin = 0
@@ -120,7 +123,7 @@ def genResults():
                 count = count + 1
                 count1 = count - notin
             else:
-                notin = notin + 1 
+                notin = notin + 1
                 count = count + 1
 
         ca = set(cardList)
@@ -132,40 +135,40 @@ def genResults():
         maxi = max(medList)
         median = medList[int(count/2)]
         onestquart = medList[int((count/2)/2)]
-        threerdquart = medList[int((count/2)+((count/2)/2))] 
+        threerdquart = medList[int((count/2)+((count/2)/2))]
         sd_mean = sq_tot / count1
         stand_dev = math.sqrt(sd_mean)
 
         # Open a file
-        fo = open("C:/AI2Labs/reports/"+fileName, "a")
+        fo = open("reports/"+fileName, "a")
         fo.write(dict[i]);
         fo.write("|");
         fo.write(str(count1));
         fo.write("|");
-        fo.write(str(miss));
+        fo.write(str(round(miss,2)));
         fo.write("|");
-        fo.write(str(card));
+        fo.write(str(round(card,2)));
         fo.write("|");
-        fo.write(str(mini));
+        fo.write(str(round(mini,2)));
         fo.write("|");
-        fo.write(str(onestquart));
+        fo.write(str(round(onestquart,2)));
         fo.write("|");
-        fo.write(str(mean));
+        fo.write(str(round(mean,2)));
         fo.write("|");
-        fo.write(str(median));
+        fo.write(str(round(median,2)));
         fo.write("|");
-        fo.write(str(threerdquart));
+        fo.write(str(round(threerdquart,2)));
         fo.write("|");
-        fo.write(str(maxi));
+        fo.write(str(round(maxi,2)));
         fo.write("|");
-        fo.write(str(stand_dev));
+        fo.write(str(round(stand_dev,2)));
         fo.write("|");
         fo.write("\n");
 
         # Close opend file
         fo.close()
-        
-    newFile = open("c:/AI2Labs/reports/"+fileName, 'a')
+
+    newFile = open("reports/"+fileName, 'a')
     newFile.write("Feature");
     newFile.write("|");
     newFile.write("Count");
@@ -202,7 +205,7 @@ def genResults():
     categorical(16)
     categorical(17)
 
-    newFile = open("c:/AI2Labs/reports/"+fileName, 'a')
+    newFile = open("reports/"+fileName, 'a')
     newFile.write("\nFeature");
     newFile.write("|");
     newFile.write("Count");
@@ -241,6 +244,7 @@ def genResults():
     continuous(22)
     continuous(23)
     continuous(24)
-    continuous(25)  
-         
+    continuous(25)
 
+
+genResults()
