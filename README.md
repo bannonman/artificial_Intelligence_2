@@ -1,2 +1,2 @@
 # artificial_Intelligence_2
-Labs from AI2
+Labs and assignment from AI2
