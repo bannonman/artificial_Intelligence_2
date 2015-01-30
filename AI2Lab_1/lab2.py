@@ -7,18 +7,10 @@ def genResults():
     import sys
 
     list1 = list()
-    cardList = list()
-    sortedList = list()
-    medList = list()
-    modeList = list()
-    secmodeList = list()
-
-
     dict = {0: 'symboling', 1:'normalized-losses',2:'make',3:'fuel-type',4:'aspiration',5:'num-of-doors',6:'body-style',
             7:'drive-wheels',8:'engine-location',9:'wheel-base',10:'length',11:'width',12:'height',13:'curb-weight',
             14:'engine-type',15:'num-of-cylinders',16:'engine-size',17:'fuel-system',18:'bore',19:'stroke',
             20:'compression-ratio',21:'horsepower',22:'peak-rpm',23:'city-mpg',24:'highway-mpg',25:'price'};
-
 
     fileName = input('Enter name of text file: ')+'.txt'
     newFile = open("reports/"+fileName, 'w')
@@ -42,6 +34,11 @@ def genResults():
         miss = 0
         card = 0
         modecount = 0
+        secondmode =0
+        
+        cardList = list()
+        modeList = list()
+        secmodeList = list()
 
         for list2 in list1:
             if(list2[i]!='?'):
@@ -55,14 +52,24 @@ def genResults():
         ca = set(cardList)
         card = len(ca)
         miss = (notin / count)*100
-        modes = mode(cardList)
+        #fixes temp mode prolem
+        if i == 16:
+            modes = "No mode"
+        else:
+            modes = mode(cardList)
+            
         for list2 in list1:
             if(list2[i]!=modes):
                 secmodeList.append(list2[i])
 
         modecount = cardList.count(modes)
         modeper = (modecount / count1)*100
-        secondmode = mode(secmodeList)
+        #fixes temp mode prolem
+        if i == 16:
+            modes = "No mode"
+        else:
+            secondmode = mode(secmodeList)
+            
         secmodecount = secmodeList.count(secondmode)
         secmodeper = (secmodecount / count1)*100
 
@@ -112,6 +119,10 @@ def genResults():
         sq_tot = 0
         sd_mean = 0
 
+        sortedList = list()
+        medList = list()
+        cardList = list()
+        
         for list2 in list1:
             if(list2[i]!='?'):
                 total = total + float(list2[i])
@@ -202,7 +213,7 @@ def genResults():
     categorical(8)
     categorical(14)
     categorical(15)
-    categorical(16)
+    categorical(16) ##causing the program to fail because there is no mode, temp fix above ^
     categorical(17)
 
     newFile = open("reports/"+fileName, 'a')
@@ -245,6 +256,4 @@ def genResults():
     continuous(23)
     continuous(24)
     continuous(25)
-
-
 genResults()
