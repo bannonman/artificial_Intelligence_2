@@ -19,10 +19,6 @@ def main():
     newFile.close()
 
 
-    with open("data/featureNames.txt") as g:
-            for line in g:
-                feat = line.replace('\n','')
-                dict.append(feat)
 
     with open("data/DataSet.txt") as f:
         for line in f:
