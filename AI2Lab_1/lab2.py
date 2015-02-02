@@ -1,21 +1,28 @@
 __author__ = 'coreyandrewbannon'
 
 
-def genResults():
+def main():
     import math
     from statistics import mode
     import sys
 
     list1 = list()
-    dict = {0: 'symboling', 1:'normalized-losses',2:'make',3:'fuel-type',4:'aspiration',5:'num-of-doors',6:'body-style',
-            7:'drive-wheels',8:'engine-location',9:'wheel-base',10:'length',11:'width',12:'height',13:'curb-weight',
-            14:'engine-type',15:'num-of-cylinders',16:'engine-size',17:'fuel-system',18:'bore',19:'stroke',
-            20:'compression-ratio',21:'horsepower',22:'peak-rpm',23:'city-mpg',24:'highway-mpg',25:'price'};
+    dict = list()
+
+    #dict = {0: 'symboling', 1:'normalized-losses',2:'make',3:'fuel-type',4:'aspiration',5:'num-of-doors',6:'body-style',
+     #       7:'drive-wheels',8:'engine-location',9:'wheel-base',10:'length',11:'width',12:'height',13:'curb-weight',
+      #      14:'engine-type',15:'num-of-cylinders',16:'engine-size',17:'fuel-system',18:'bore',19:'stroke',
+       #     20:'compression-ratio',21:'horsepower',22:'peak-rpm',23:'city-mpg',24:'highway-mpg',25:'price'};
 
     fileName = input('Enter name of text file: ')+'.txt'
     newFile = open("reports/"+fileName, 'w')
     newFile.close()
 
+
+    with open("data/featureNames.txt") as g:
+            for line in g:
+                feat = line.replace('\n','')
+                dict.append(feat)
 
     with open("data/DataSet.txt") as f:
         for line in f:
@@ -52,11 +59,7 @@ def genResults():
         ca = set(cardList)
         card = len(ca)
         miss = (notin / count)*100
-        #fixes temp mode prolem
-        if i == 16:
-            modes = "No mode"
-        else:
-            modes = mode(cardList)
+        modes = mode(cardList)
             
         for list2 in list1:
             if(list2[i]!=modes):
@@ -64,38 +67,35 @@ def genResults():
 
         modecount = cardList.count(modes)
         modeper = (modecount / count1)*100
-        #fixes temp mode prolem
-        if i == 16:
-            modes = "No mode"
-        else:
-            secondmode = mode(secmodeList)
+
+        secondmode = mode(secmodeList)
             
         secmodecount = secmodeList.count(secondmode)
         secmodeper = (secmodecount / count1)*100
 
         # Open a file
         fo = open("reports/"+fileName, "a")
-        fo.write(dict[i]);
-        fo.write("|");
-        fo.write(str(count1));
-        fo.write("|");
-        fo.write(str(round(miss,2)));
-        fo.write("|");
-        fo.write(str(round(card,2)));
-        fo.write("|");
-        fo.write(str(modes));
-        fo.write("|");
-        fo.write(str(round(modecount,2)));
-        fo.write("|");
-        fo.write(str(round(modeper,2)));
-        fo.write("|");
-        fo.write(str(secondmode));
-        fo.write("|");
-        fo.write(str(round(secmodecount,2)));
-        fo.write("|");
-        fo.write(str(round(secmodeper,2)));
-        fo.write("|");
-        fo.write("\n");
+        fo.write(dict[i].ljust(16))
+        fo.write("\t")
+        fo.write(str(count1).rjust(5))
+        fo.write("\t")
+        fo.write(str(round(miss,2)).rjust(5))
+        fo.write("\t")
+        fo.write(str(round(card,2)).rjust(5))
+        fo.write("\t")
+        fo.write(str(modes).rjust(5))
+        fo.write("\t")
+        fo.write(str(round(modecount,2)).rjust(10))
+        fo.write("\t")
+        fo.write(str(round(modeper,2)).rjust(8))
+        fo.write("\t")
+        fo.write(str(secondmode).rjust(8))
+        fo.write("\t")
+        fo.write(str(round(secmodecount,2)).rjust(12))
+        fo.write("\t")
+        fo.write(str(round(secmodeper,2)).rjust(10))
+        fo.write("\t")
+        fo.write("\n")
 
         # Close opend file
         fo.close()
@@ -152,56 +152,61 @@ def genResults():
 
         # Open a file
         fo = open("reports/"+fileName, "a")
-        fo.write(dict[i]);
-        fo.write("|");
-        fo.write(str(count1));
-        fo.write("|");
-        fo.write(str(round(miss,2)));
-        fo.write("|");
-        fo.write(str(round(card,2)));
-        fo.write("|");
-        fo.write(str(round(mini,2)));
-        fo.write("|");
-        fo.write(str(round(onestquart,2)));
-        fo.write("|");
-        fo.write(str(round(mean,2)));
-        fo.write("|");
-        fo.write(str(round(median,2)));
-        fo.write("|");
-        fo.write(str(round(threerdquart,2)));
-        fo.write("|");
-        fo.write(str(round(maxi,2)));
-        fo.write("|");
-        fo.write(str(round(stand_dev,2)));
-        fo.write("|");
-        fo.write("\n");
+        fo.write(dict[i].ljust(16));
+        fo.write("\t");
+        fo.write(str(count1).rjust(5));
+        fo.write("\t");
+        fo.write(str(round(miss,2)).rjust(5));
+        fo.write("\t");
+        fo.write(str(round(card,2)).rjust(5));
+        fo.write("\t");
+        fo.write(str(round(mini,2)).rjust(5));
+        fo.write("\t");
+        fo.write(str(round(onestquart,2)).rjust(10));
+        fo.write("\t");
+        fo.write(str(round(mean,2)).rjust(8));
+        fo.write("\t");
+        fo.write(str(round(median,2)).rjust(8));
+        fo.write("\t");
+        fo.write(str(round(threerdquart,2)).rjust(10));
+        fo.write("\t");
+        fo.write(str(round(maxi,2)).rjust(10));
+        fo.write("\t");
+        fo.write(str(round(stand_dev,2)).rjust(10));
+        fo.write("\t");
+        fo.write("\n")
 
         # Close opend file
         fo.close()
 
     newFile = open("reports/"+fileName, 'a')
-    newFile.write("Feature");
-    newFile.write("|");
-    newFile.write("Count");
-    newFile.write("|");
-    newFile.write("Miss%");
-    newFile.write("|");
-    newFile.write("Card");
-    newFile.write("|");
-    newFile.write("Mode");
-    newFile.write("|");
-    newFile.write("Mode Count");
-    newFile.write("|");
-    newFile.write("Mode %");
-    newFile.write("|");
-    newFile.write("2nd Mode");
-    newFile.write("|");
-    newFile.write("2nd Mode Count");
-    newFile.write("|");
-    newFile.write("2nd Mode %");
-    newFile.write("|");
+    newFile.write("Categorical Table:")
+    newFile.write("\n")
+    newFile.write("Feature".ljust(16));
+    newFile.write("\t");
+    newFile.write("Count".rjust(5));
+    newFile.write("\t");
+    newFile.write("Miss%".rjust(5));
+    newFile.write("\t");
+    newFile.write("Card".rjust(5));
+    newFile.write("\t");
+    newFile.write("Mode".rjust(5));
+    newFile.write("\t");
+    newFile.write("ModeCount".rjust(10));
+    newFile.write("\t");
+    newFile.write("Mode%".rjust(8));
+    newFile.write("\t");
+    newFile.write("2ndMode".rjust(8));
+    newFile.write("\t");
+    newFile.write("2ndModeCount".rjust(12));
+    newFile.write("\t");
+    newFile.write("2ndMode%".rjust(10));
+    newFile.write("\t");
+    newFile.write("\n");
+    newFile.write("-------------------------------------------------------------------------------------------------------------------")
     newFile.write("\n");
     newFile.close()
+
 
     categorical(0)
     categorical(2)
@@ -213,32 +218,36 @@ def genResults():
     categorical(8)
     categorical(14)
     categorical(15)
-    categorical(16) ##causing the program to fail because there is no mode, temp fix above ^
     categorical(17)
 
     newFile = open("reports/"+fileName, 'a')
-    newFile.write("\nFeature");
-    newFile.write("|");
-    newFile.write("Count");
-    newFile.write("|");
-    newFile.write("Miss%");
-    newFile.write("|");
-    newFile.write("Card");
-    newFile.write("|");
-    newFile.write("Min");
-    newFile.write("|");
-    newFile.write("1st Quart");
-    newFile.write("|");
-    newFile.write("Mean");
-    newFile.write("|");
-    newFile.write("Median");
-    newFile.write("|");
-    newFile.write("3rd Quart");
-    newFile.write("|");
-    newFile.write("Max");
-    newFile.write("|");
-    newFile.write("Std Dev");
-    newFile.write("|");
+    newFile.write("\nContinuous Table:")
+    newFile.write("\n")
+    newFile.write("---------------------------------------------------------------------------------------------------------------------------\n")
+    newFile.write("Feature".ljust(16));
+    newFile.write("\t");
+    newFile.write("Count".rjust(5));
+    newFile.write("\t");
+    newFile.write("Miss%".rjust(5));
+    newFile.write("\t");
+    newFile.write("Card".rjust(5));
+    newFile.write("\t");
+    newFile.write("Min".rjust(5));
+    newFile.write("\t");
+    newFile.write("1stQuart".rjust(10));
+    newFile.write("\t");
+    newFile.write("Mean".rjust(8));
+    newFile.write("\t");
+    newFile.write("Median".rjust(8));
+    newFile.write("\t");
+    newFile.write("3rdQuart".rjust(10));
+    newFile.write("\t");
+    newFile.write("Max".rjust(10));
+    newFile.write("\t");
+    newFile.write("StdDev".rjust(10));
+    newFile.write("\t");
+    newFile.write("\n");
+    newFile.write("---------------------------------------------------------------------------------------------------------------------------")
     newFile.write("\n");
     newFile.close()
 
@@ -248,6 +257,7 @@ def genResults():
     continuous(11)
     continuous(12)
     continuous(13)
+    continuous(16)
     continuous(18)
     continuous(19)
     continuous(20)
@@ -256,4 +266,6 @@ def genResults():
     continuous(23)
     continuous(24)
     continuous(25)
-genResults()
+
+if __name__ == '__main__':
+    main()
