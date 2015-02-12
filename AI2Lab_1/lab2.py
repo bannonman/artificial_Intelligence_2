@@ -7,19 +7,17 @@ def main():
     import sys
 
     list1 = list()
-    dict = list()
-
-    #dict = {0: 'symboling', 1:'normalized-losses',2:'make',3:'fuel-type',4:'aspiration',5:'num-of-doors',6:'body-style',
-     #       7:'drive-wheels',8:'engine-location',9:'wheel-base',10:'length',11:'width',12:'height',13:'curb-weight',
-      #      14:'engine-type',15:'num-of-cylinders',16:'engine-size',17:'fuel-system',18:'bore',19:'stroke',
-       #     20:'compression-ratio',21:'horsepower',22:'peak-rpm',23:'city-mpg',24:'highway-mpg',25:'price'};
-
+    feat = list()
+    
     fileName = input('Enter name of text file: ')+'.txt'
     newFile = open("reports/"+fileName, 'w')
     newFile.close()
 
-
-
+    with open("data/featureNames.txt") as f:
+        for line in f:
+            stri = line.replace("\n","");
+            feat.append(stri)
+            
     with open("data/DataSet.txt") as f:
         for line in f:
             car = list()
@@ -71,7 +69,7 @@ def main():
 
         # Open a file
         fo = open("reports/"+fileName, "a")
-        fo.write(dict[i].ljust(16))
+        fo.write(feat[i].ljust(16))
         fo.write("\t")
         fo.write(str(count1).rjust(5))
         fo.write("\t")
@@ -148,7 +146,7 @@ def main():
 
         # Open a file
         fo = open("reports/"+fileName, "a")
-        fo.write(dict[i].ljust(16));
+        fo.write(feat[i].ljust(16));
         fo.write("\t");
         fo.write(str(count1).rjust(5));
         fo.write("\t");
@@ -199,7 +197,7 @@ def main():
     newFile.write("2ndMode%".rjust(10));
     newFile.write("\t");
     newFile.write("\n");
-    newFile.write("-------------------------------------------------------------------------------------------------------------------")
+    newFile.write("-------------------------------------------------------------------------------------------------------------------------------------")
     newFile.write("\n");
     newFile.close()
 
@@ -219,7 +217,7 @@ def main():
     newFile = open("reports/"+fileName, 'a')
     newFile.write("\nContinuous Table:")
     newFile.write("\n")
-    newFile.write("---------------------------------------------------------------------------------------------------------------------------\n")
+    newFile.write("-------------------------------------------------------------------------------------------------------------------------------------\n")
     newFile.write("Feature".ljust(16));
     newFile.write("\t");
     newFile.write("Count".rjust(5));
@@ -243,7 +241,7 @@ def main():
     newFile.write("StdDev".rjust(10));
     newFile.write("\t");
     newFile.write("\n");
-    newFile.write("---------------------------------------------------------------------------------------------------------------------------")
+    newFile.write("-------------------------------------------------------------------------------------------------------------------------------------")
     newFile.write("\n");
     newFile.close()
 
