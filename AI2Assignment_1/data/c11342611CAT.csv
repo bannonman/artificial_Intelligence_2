@@ -1,10 +1,10 @@
 FEATURENAME, COUNT, % MISS, CARD, MODE, MODECOUNT, MODE%, 2nd MODE, 2nd MODE COUNT, 2nd MODE % 
-workclass,30940,0.0,9, Private,21576,69.73, Self-emp-not-inc,2406,7.78
-education,30940,0.0,16, HS-grad,9976,32.24, Some-college,6938,22.42
-marital-status,30940,0.0,7, Married-civ-spouse,14201,45.9, Never-married,10167,32.86
-occupation,30940,0.0,15, Prof-specialty,3932,12.71, Craft-repair,3887,12.56
-relationship,30940,0.0,6, Husband,12496,40.39, Not-in-family,7904,25.55
-race,30940,0.0,5, White,26442,85.46, Black,2965,9.58
-sex,30940,0.0,2, Male,20705,66.92, Female,10235,33.08
-native-country,30940,0.0,42, United-States,27719,89.59, Mexico,607,1.96
-target,30940,0.0,2, <=50K,23506,75.97, >50K,7434,24.03
+workclass,29205,5.61,8, Private,21576,73.88, Self-emp-not-inc,2406,8.24 
+education,30940,0.0,16, HS-grad,9976,32.24, Some-college,6938,22.42 
+marital-status,30940,0.0,7, Married-civ-spouse,14201,45.9, Never-married,10167,32.86 
+occupation,29198,5.63,14, Prof-specialty,3932,13.47, Craft-repair,3887,13.31 
+relationship,30940,0.0,6, Husband,12496,40.39, Not-in-family,7904,25.55 
+race,30940,0.0,5, White,26442,85.46, Black,2965,9.58 
+sex,30940,0.0,2, Male,20705,66.92, Female,10235,33.08 
+native-country,30386,1.79,41, United-States,27719,91.22, Mexico,607,2.0 
+target,30940,0.0,2, <=50K,23506,75.97, >50K,7434,24.03 
